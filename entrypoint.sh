@@ -19,12 +19,12 @@ rm -rf /tmp/${name}_${version}.orig/rpm
 tar cvfz /home/builder/rpm/${name}-${version}.tar.gz -C /tmp ${name}-${version}
 rm -rf /tmp/${name}-${version}
 
-cd /home/builder
 echo "build package"
-rpmbuild -ba /home/builder/rpm/*.spec
+mkdir -p /tmp/build
+rpmbuild -ba --buildroot /tmp/build /home/builder/rpm/*.spec
 
 echo "lint packages"
-rpmlint /home/builder/rpm/*/*.rpm
+rpmlint /tmp/build/*/*.rpm
 
 echo "rpm version: ${version}-${release}"
 echo ::set-output name=rpmversion::${version}-${release}
