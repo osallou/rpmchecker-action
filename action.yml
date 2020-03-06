@@ -1,0 +1,9 @@
+# action.yml
+name: 'rpm-checker'
+description: 'Test build of a rpm package with additional checks'
+outputs:
+  rpmversion:
+    description: 'rpm package version'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
