@@ -9,21 +9,21 @@ release=`rpmspec --srpm -q --qf "%{Release}" rpm/*.spec`
 cp rpm/* ~/rpm/
 
 echo "install build deps"
-sudo yum-builddep ~/rpm/*.spec
+sudo yum-builddep /home/builder/rpm/*.spec
 
 echo "create source tarball"
 mkdir -p /tmp/${name}-${version}/
 cp -a . /tmp/${name}-${version}/
 rm -rf /tmp/${name}_${version}.orig/.git
 rm -rf /tmp/${name}_${version}.orig/rpm
-tar cvfz ~/rpm/${name}-${version}.tar.gz -C /tmp ${name}-${version}
+tar cvfz /home/builder/rpm/${name}-${version}.tar.gz -C /tmp ${name}-${version}
 rm -rf /tmp/${name}-${version}
 
 echo "build package"
-rpmbuild -ba ~/rpm/*.spec
+rpmbuild -ba /home/builder/rpm/*.spec
 
 echo "lint packages"
-rpmlint ~/rpm/*/*.rpm
+rpmlint /home/builder/rpm/*/*.rpm
 
 echo "rpm version: ${version}-${release}"
 echo ::set-output name=rpmversion::${version}-${release}
