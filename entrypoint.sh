@@ -6,7 +6,7 @@ name=`rpmspec --srpm -q --qf "%{Name}" rpm/*.spec`
 version=`rpmspec --srpm -q --qf "%{Version}" rpm/*.spec`
 release=`rpmspec --srpm -q --qf "%{Release}" rpm/*.spec`
 
-cp rpm/* ~/rpm/
+cp rpm/* /home/builder/rpm/
 
 echo "install build deps"
 sudo yum-builddep /home/builder/rpm/*.spec
