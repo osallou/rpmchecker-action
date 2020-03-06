@@ -19,6 +19,7 @@ rm -rf /tmp/${name}_${version}.orig/rpm
 tar cvfz /home/builder/rpm/${name}-${version}.tar.gz -C /tmp ${name}-${version}
 rm -rf /tmp/${name}-${version}
 
+cd /home/builder
 echo "build package"
 rpmbuild -ba /home/builder/rpm/*.spec
 
