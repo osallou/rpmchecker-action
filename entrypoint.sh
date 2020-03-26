@@ -34,7 +34,11 @@ export HOME=/home/builder
 rpmbuild -ba /home/builder/rpm/*.spec
 
 echo "lint packages"
-rpmlint /home/builder/rpm/*/*.rpm
+if [ -e $RPMDIR/rpmlint ]; then
+    rpmlint -f $RPMDIR/rpmlint /home/builder/rpm/*/*.rpm
+else
+    rpmlint /home/builder/rpm/*/*.rpm
+fi
 
 echo "rpm version: ${version}-${release}"
 echo ::set-output name=rpmversion::${version}-${release}

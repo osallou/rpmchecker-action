@@ -23,6 +23,9 @@ Example:
     env:
         EXTRA_1: epel-release
 
+If a *rpmlint* file is present in *path-to-rpm* directory, will be used as
+rpm config file to filter errors.
+
 ## Roadmap
 
 * manage as input name of source file
