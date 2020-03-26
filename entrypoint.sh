@@ -8,7 +8,7 @@ RPMDIR=$1
 env | grep EXTRA > /tmp/extras
 while i= read -r line
 do
-    REPO=ES=${line##*=}
+    REPO=${line##*=}
     sudo yum install -y $REPO
 done < /tmp/extras
 
