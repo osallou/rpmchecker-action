@@ -2,11 +2,13 @@
 
 set -e
 
-name=`rpmspec --srpm -q --qf "%{Name}" rpm/*.spec`
-version=`rpmspec --srpm -q --qf "%{Version}" rpm/*.spec`
-release=`rpmspec --srpm -q --qf "%{Release}" rpm/*.spec`
+RPMDIR=$1
 
-cp rpm/* /home/builder/rpm/
+name=`rpmspec --srpm -q --qf "%{Name}" ${RPMDIR}/*.spec`
+version=`rpmspec --srpm -q --qf "%{Version}" ${RPMDIR}/*.spec`
+release=`rpmspec --srpm -q --qf "%{Release}" ${RPMDIR}/*.spec`
+
+cp ${RPMDIR}/* /home/builder/rpm/
 
 echo "install build deps"
 sudo yum-builddep /home/builder/rpm/*.spec

@@ -1,9 +1,17 @@
 # action.yml
 name: 'rpm-checker'
 description: 'Test build of a rpm package with additional checks'
+inputs:
+  path-to-rpm:  # relative path to dir containing spec file
+    description: 'subdirecty location for spec file'
+    required: false
+    default: 'rpm'
+
 outputs:
   rpmversion:
     description: 'rpm package version'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.path-to-rpm }}
