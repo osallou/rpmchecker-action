@@ -4,6 +4,13 @@ set -e
 
 RPMDIR=$1
 
+# Pre install extra packages (epel repo, etc.)
+env | grep EXTRA > /tmp/extras
+while i= read -r line
+do
+    sudo yum install -y $line
+done < /tmp/extras
+
 name=`rpmspec --srpm -q --qf "%{Name}" ${RPMDIR}/*.spec`
 version=`rpmspec --srpm -q --qf "%{Version}" ${RPMDIR}/*.spec`
 release=`rpmspec --srpm -q --qf "%{Release}" ${RPMDIR}/*.spec`

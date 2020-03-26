@@ -17,6 +17,11 @@ Directory containing spec file etc. is, by default, *rpm*,
 but an other relative location can be specified with action
 input path-to-rpm
 
+Support env variables EXTRA_XX to pre-install some packages (EPEL repo for example).
+Example:
+
+    env:
+        EXTRA_1: epel-release
 
 ## Roadmap
 
