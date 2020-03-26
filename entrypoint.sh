@@ -19,7 +19,7 @@ release=`rpmspec --srpm -q --qf "%{Release}" ${RPMDIR}/*.spec`
 cp ${RPMDIR}/* /home/builder/rpm/
 
 echo "install build deps"
-sudo yum-builddep /home/builder/rpm/*.spec
+sudo yum-builddep -y /home/builder/rpm/*.spec
 
 echo "create source tarball"
 mkdir -p /tmp/${name}-${version}/
