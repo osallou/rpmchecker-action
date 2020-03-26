@@ -8,7 +8,8 @@ RPMDIR=$1
 env | grep EXTRA > /tmp/extras
 while i= read -r line
 do
-    sudo yum install -y $line
+    REPO=ES=${line##*=}
+    sudo yum install -y $REPO
 done < /tmp/extras
 
 name=`rpmspec --srpm -q --qf "%{Name}" ${RPMDIR}/*.spec`
